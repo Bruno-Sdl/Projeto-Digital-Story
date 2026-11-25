@@ -1,0 +1,94 @@
+.footer {
+  width: 100%;
+  background-color: var(--dark-gray);
+  color: var(--white);
+  padding: 60px 40px 24px;
+}
+
+.footer-content {
+  max-width: 1440px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  gap: 48px;
+  flex-wrap: wrap;
+}
+
+/* Coluna da marca (Logo + descrição + redes sociais) */
+.footer-brand {
+  max-width: 300px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.footer-description {
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--white);
+}
+
+.social-links {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.social-links a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.social-links img {
+  width: 20px;
+  height: 20px;
+}
+
+/* 3.2.1 - Componente de informações */
+.footer-columns {
+  display: flex;
+  gap: 64px;
+  flex-wrap: wrap;
+}
+
+.info-section-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--white);
+  margin-bottom: 20px;
+}
+
+.info-section-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.info-section-link {
+  font-size: 15px;
+  color: var(--white);
+  transition: opacity 0.2s ease;
+}
+
+.info-section-link:hover {
+  opacity: 0.75;
+  text-decoration: underline;
+}
+
+/* Linha divisória e copyright */
+.footer-divider {
+  max-width: 1440px;
+  margin: 48px auto 20px;
+  border: none;
+  border-top: 1px solid rgba(255, 255, 255, 0.25);
+}
+
+.footer-copyright {
+  max-width: 1440px;
+  margin: 0 auto;
+  text-align: center;
+  font-size: 13px;
+  color: var(--white);
+}
