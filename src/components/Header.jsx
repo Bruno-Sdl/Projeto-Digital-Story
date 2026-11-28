@@ -35,6 +35,8 @@ const Header = () => {
         {/* 3.1.2 - Campo de busca */}
         <div className="search-box">
           <input
+            id='search-product'
+            name='search'
             type="text"
             className="search-input"
             placeholder="Pesquisar produto..."
@@ -49,7 +51,6 @@ const Header = () => {
             onClick={handleSearch}
             className="search-button"
             aria-label="Buscar produtos"
-            
             >
             🔍
           </button>

@@ -1,5 +1,4 @@
 import { useMemo, useState } from "react";
-import { Layout } from "../components/Layout";
 import { FilterGroup } from "../components/FilterGroup";
 import { Section } from "../components/Section";
 import { ProductListing } from "../components/ProductListing";
@@ -48,7 +47,7 @@ const CONDITION_OPTIONS = [
   { text: "Usado", value: "Usado" },
 ];
 
-export function ProductListingPage() {
+function ProductListingPage() {
   const [sortOrder, setSortOrder] = useState("");
   const [selectedCategories, setSelectedCategories] = useState([]);
   const [selectedConditions, setSelectedConditions] = useState([]);
@@ -67,7 +66,8 @@ export function ProductListingPage() {
     });
 
     const getEffectivePrice = (product) =>
-      product.priceDiscount !== undefined && product.priceDiscount !== null
+      product.priceDiscount !== undefined &&
+      product.priceDiscount !== null
         ? product.priceDiscount
         : product.price;
 
@@ -93,112 +93,96 @@ export function ProductListingPage() {
   }`;
 
   return (
-    <Layout>
-      <div
+    <div
+      style={{
+        display: "flex",
+        gap: "24px",
+        alignItems: "flex-start",
+        padding: "24px",
+      }}
+    >
+      <aside
         style={{
           display: "flex",
-          gap: "24px",
-          alignItems: "flex-start",
-          padding: "24px",
+          flexDirection: "column",
+          gap: "20px",
+          width: "308px",
+          flexShrink: 0,
         }}
       >
-        <aside
+        <div
           style={{
+            width: "308px",
+            height: "60px",
             display: "flex",
             flexDirection: "column",
-            gap: "20px",
-            width: "308px",
-            flexShrink: 0,
+            justifyContent: "center",
+            gap: "4px",
           }}
         >
-          <div
-            style={{
-              width: "308px",
-              height: "60px",
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "center",
-              gap: "4px",
-            }}
+          <label htmlFor="sort-select">
+            Ordenar por
+          </label>
+
+          <select
+            id="sort-select"
+            value={sortOrder}
+            onChange={(e) => setSortOrder(e.target.value)}
           >
-            <label
-              htmlFor="sort-select"
-              style={{
-                fontSize: "16px",
-                color: "var(--dark-gray-2, #474747)",
-              }}
-            >
-              Ordenar por
-            </label>
-            <select
-              id="sort-select"
-              value={sortOrder}
-              onChange={(e) => setSortOrder(e.target.value)}
-              style={{
-                width: "100%",
-                height: "100%",
-                color: "var(--dark-gray-2, #474747)",
-              }}
-            >
-              <option value="">Padrão</option>
-              <option value="lowest-price">Menor preço</option>
-              <option value="highest-price">Maior preço</option>
-            </select>
-          </div>
-
-          <div
-            style={{
-              backgroundColor: "#FFFFFF",
-              width: "308px",
-              padding: "20px",
-              display: "flex",
-              flexDirection: "column",
-              gap: "16px",
-            }}
-          >
-            <div>
-              <h2
-                style={{
-                  margin: "0 0 12px 0",
-                  fontSize: "16px",
-                  color: "var(--dark-gray-2, #474747)",
-                }}
-              >
-                Filtrar por
-              </h2>
-              <hr
-                style={{
-                  border: "none",
-                  borderTop: "1px solid var(--light-gray-2, #CCCCCC)",
-                  margin: 0,
-                }}
-              />
-            </div>
-
-            <FilterGroup
-              title="Categoria"
-              inputType="checkbox"
-              options={CATEGORY_OPTIONS}
-              selectedValues={selectedCategories}
-              onChange={setSelectedCategories}
-            />
-
-            <FilterGroup
-              title="Estado"
-              inputType="radio"
-              options={CONDITION_OPTIONS}
-              selectedValues={selectedConditions}
-              onChange={setSelectedConditions}
-            />
-          </div>
-        </aside>
-
-        <div style={{ flex: 1 }}>
-          <Section title={totalText} titleAlign="left">
-            <ProductListing products={filteredAndSortedProducts} />
-          </Section>
+            <option value="">Padrão</option>
+            <option value="lowest-price">Menor preço</option>
+            <option value="highest-price">Maior preço</option>
+          </select>
         </div>
+
+        <div
+          style={{
+            backgroundColor: "#FFFFFF",
+            width: "308px",
+            padding: "20px",
+            display: "flex",
+            flexDirection: "column",
+            gap: "16px",
+          }}
+        >
+          <div>
+            <h2>Filtrar por</h2>
+
+            <hr
+              style={{
+                border: "none",
+                borderTop: "1px solid #CCCCCC",
+              }}
+            />
+          </div>
+
+          <FilterGroup
+            title="Categoria"
+            inputType="checkbox"
+            options={CATEGORY_OPTIONS}
+            selectedValues={selectedCategories}
+            onChange={setSelectedCategories}
+          />
+
+          <FilterGroup
+            title="Estado"
+            inputType="radio"
+            options={CONDITION_OPTIONS}
+            selectedValues={selectedConditions}
+            onChange={setSelectedConditions}
+          />
+        </div>
+      </aside>
+
+      <div style={{ flex: 1 }}>
+        <Section title={totalText} titleAlign="left">
+          <ProductListing
+            products={filteredAndSortedProducts}
+          />
+        </Section>
       </div>
-    </Layout>
+    </div>
   );
 }
+
+export default ProductListingPage;
